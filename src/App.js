@@ -6,7 +6,7 @@ class App extends Component {
     return (
       <div className="site">
         <header className="site_header">
-          <h1 className="site_title">Voila</h1>
+          <h1 className="site_title">Voila!</h1>
         </header>
         <div className="site_main">
           
