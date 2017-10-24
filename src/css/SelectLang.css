@@ -1,0 +1,58 @@
+.select_lang {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    float: right;
+    text-align: right
+}
+
+.select_lang.select_lang_open {
+    background-color: #ffc5b8;
+}
+
+.choose_lang {
+    display: none;
+}
+
+.select_lang_open .choose_lang {
+    display: block;
+}
+
+.select_lang button {
+    border: 0;
+    background: transparent;
+    text-transform: uppercase;
+    min-height: 35px;
+    cursor: pointer;
+}
+
+.select_lang button:hover,.select_lang button:focus {
+    background-color: #e9afa2;
+    outline: none;
+}
+
+.current_lang {
+    font-size: 16px;
+    position: relative;
+    padding: 0 20px 0 10px;
+}
+
+.current_lang:before {
+    position: absolute;
+    bottom: 6px;
+    right: 7px;
+    display: block;
+    content: "";
+    width: 0px;
+    height: 0px;
+    border: 5px solid transparent;
+    border-top: 5px solid #222;
+}
+
+.choose_lang_btn {
+    display: block;
+}
+
+.choose_lang_btn_active {
+    text-decoration: underline;
+}

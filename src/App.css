@@ -1,3 +1,9 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .site {
   text-align: center;
   font-family: Montserrat, sans-serif;
@@ -8,10 +14,54 @@
 }
 
 .site_header {
-  height: 150px;
+  height: 120px;
   padding: 20px;
 }
 
 .site_title {
   font-size: 1.5em;
+  font-weight: normal;
+}
+
+.add_padding {
+  padding: 20px;
+}
+
+.standard_input, .standard_button {
+  width: 100%;
+  font-weight: normal;
+  font-family: Montserrat, sans-serif;
+  color: #222;
+  box-shadow: none;
+  height: 55px;
+  padding: 10px 15px;
+  background-image: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.standard_input {
+  font-size: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.standard_button {
+  text-align: center;
+  letter-spacing: 2px;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  text-transform: uppercase;
+  white-space: pre-wrap;
+  line-height: 20px;
+  font-size: 13px;
+  background-color: #ffc5b8;
+  color: #fff;
+  border: 0;
+}
+
+.standard_button:hover,.standard_button:focus {
+  background-color: #e9afa2;
+  outline: none;
 }
