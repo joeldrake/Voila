@@ -36,14 +36,15 @@
   height: 55px;
   padding: 10px 15px;
   background-image: none;
-  border-radius: 4px;
+  border-radius: 0;
   margin-bottom: 10px;
 }
 
 .standard_input {
   font-size: 16px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  border: 0;
+  background-color: #fafafa;
+  border-bottom: 3px solid #e9afa2;
 }
 
 .standard_button {
@@ -62,6 +63,5 @@
 }
 
 .standard_button:hover,.standard_button:focus {
-  background-color: #e9afa2;
   outline: none;
 }
