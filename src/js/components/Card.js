@@ -36,7 +36,7 @@ class Card extends Component {
             } onClick={this.props.loadUpNextCard} data-keyindex={keyindex}>
                 <div className="card_string">
                     <div className="card_answer_string card_answer_string_correct">"{userInput}"</div>
-                    <div className="card_answer_string_emoji">😘👌</div>
+                    <div className="card_answer_string_emoji"><span role="img" aria-label="correct">😘👌</span></div>
                     {string}<br />
                     =<br />
                     {answer}
@@ -48,7 +48,7 @@ class Card extends Component {
             } onClick={this.props.loadUpNextCard} data-keyindex={keyindex}>
                 <div className="card_string">
                     <div className="card_answer_string card_answer_string_wrong">{userInput}</div>
-                    <div className="card_answer_string_emoji">😵</div>
+                    <div className="card_answer_string_emoji"><span role="img" aria-label="wrong">😵</span></div>
                     {string}<br />
                     =<br />
                     {answer}

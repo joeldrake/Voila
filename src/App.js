@@ -75,7 +75,7 @@ class App extends Component {
   handleCardSubmit(e) {
     e.preventDefault();
     const target = e.currentTarget
-    const keyindex = parseInt(target.getAttribute('data-keyindex'));
+    const keyindex = parseInt(target.getAttribute('data-keyindex'),10);
     const currLang = lang.getLanguage();
     let loadedStrings = this.state.loadedStrings;
 
@@ -128,9 +128,6 @@ class App extends Component {
     }, 1000);
     */
 
-    console.log(inputText);
-    console.log(answer);
-
   }
 
   loadUpNextCard(e) {
@@ -139,10 +136,10 @@ class App extends Component {
     
     let keyindex;
     if(eIsNumber){
-      keyindex = parseInt(e);
+      keyindex = parseInt(e,10);
     } else {
       const target = e.currentTarget
-      keyindex = parseInt(target.getAttribute('data-keyindex'));
+      keyindex = parseInt(target.getAttribute('data-keyindex'),10);
     }
     
     const nextInLine = document.querySelector('[data-keyindex="'+(keyindex + 1)+'"] .card_string_input');
@@ -155,9 +152,14 @@ class App extends Component {
       document.activeElement.blur();
     }
 
-    console.log(nextInLine);
-
     let loadedStrings = this.state.loadedStrings;
+
+
+    if(loadedStrings.length === (keyindex+1)) {
+      this.toggleShowResult();
+      return;
+    }
+
     loadedStrings.forEach((element,i) => {
       let doneStatus = false;
       let activeStatus = false;
@@ -227,8 +229,6 @@ class App extends Component {
 
   renderResult() {
     let loadedStrings = this.state.loadedStrings;
-    console.log(loadedStrings);
-    const currLang = lang.getLanguage();
 
     const result = loadedStrings.map((element,i) => {
       let addClass = '';
