@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import LocalizedStrings from 'react-localization';
 import lang from './Lang';
-import string from './String';
 import './../../css/SelectLang.css';
 
 class SelectLang extends Component {
@@ -14,8 +12,6 @@ class SelectLang extends Component {
       }
 
     toggleLangDropdown(btn) {
-        const target = btn.currentTarget;
-        const newLang = target.getAttribute('data-lang');
         const choose_lang_open = this.state.choose_lang_open;
         this.setState({
             choose_lang_open: !choose_lang_open
@@ -35,11 +31,14 @@ class SelectLang extends Component {
     render() {
       const currLang = lang.getLanguage();
       const choose_lang_open = this.state.choose_lang_open;
+      const cardsRunning = this.props.cardsRunning;
       return (
           <div className={
-            this.state.choose_lang_open ? 'select_lang select_lang_open' : 'select_lang'
-          }>
-
+            'select_lang'+
+            (choose_lang_open ? ' select_lang_open' : '') +
+            (cardsRunning ? ' hidden' : '')
+            }
+          >
               <button className="current_lang" onClick={this.toggleLangDropdown.bind(this)}>{currLang}</button>
 
               <div className="choose_lang">

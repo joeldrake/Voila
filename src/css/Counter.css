@@ -1,0 +1,7 @@
+.counter {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    float: left;
+    text-align: left;
+}

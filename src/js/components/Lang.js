@@ -2,16 +2,22 @@ import LocalizedStrings from 'react-localization';
 
 const lang = new LocalizedStrings({
     sv:{
-      hello:"Hej",
-      bye:"Hejdå",
-      howareyou:"Hur mår du?",
-      italkalittlefrench:"Jag pratar lite franska"
+      intro:"Dags att träna på Franska!",
+      pushToStart:"Tryck på start för att börja.",
+      send:"Skicka",
+      typeanswerhere:"Skriv svar här",
+      start:"Start",
+      correct:"Rätt",
+      wrong:"Fel"
     },
     fr: {
-      hello:"Bonjour",
-      bye:"Au revoir",
-      howareyou:"comment ça va?",
-      italkalittlefrench:"Je parle un peu français"
+      intro:"Exercice en suédois!",
+      pushToStart:"Appuyez sur start pour commencer.",
+      send:"Envoyer",
+      typeanswerhere:"Ecrire réponse ici",
+      start:"Start",
+      correct:"Droit",
+      wrong:"Mal"
     }
 });
 

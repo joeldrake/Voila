@@ -9,18 +9,31 @@
   font-family: Montserrat, sans-serif;
 }
 
+.site_main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .site_logo {
   height: 80px;
 }
 
 .site_header {
-  height: 120px;
+  height: 100px;
   padding: 20px;
 }
 
 .site_title {
   font-size: 1.5em;
   font-weight: normal;
+}
+
+.intro {
+  width: 100%;
+  max-width: 300px;
+  font-size: 18px;
 }
 
 .add_padding {
@@ -37,7 +50,7 @@
   padding: 10px 15px;
   background-image: none;
   border-radius: 0;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .standard_input {
@@ -49,6 +62,7 @@
 
 .standard_button {
   text-align: center;
+  max-width: 300px;
   letter-spacing: 2px;
   vertical-align: middle;
   cursor: pointer;
@@ -57,11 +71,21 @@
   white-space: pre-wrap;
   line-height: 20px;
   font-size: 13px;
-  background-color: #ffc5b8;
+  background-color: #e9afa2;
   color: #fff;
   border: 0;
 }
 
 .standard_button:hover,.standard_button:focus {
   outline: none;
+  background-color: #d59b8e;
+}
+
+.standard_input::placeholder {
+  color: #ddd;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
 }
