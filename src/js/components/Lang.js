@@ -8,7 +8,12 @@ const lang = new LocalizedStrings({
       typeanswerhere:"Skriv svar här",
       start:"Start",
       correct:"Rätt",
-      wrong:"Fel"
+      wrong:"Fel",
+      of:"av",
+      restart:"Starta om",
+      you:"Du",
+      french:"Franska",
+      swedish:"Svenska"
     },
     fr: {
       intro:"Exercice en suédois!",
@@ -17,7 +22,12 @@ const lang = new LocalizedStrings({
       typeanswerhere:"Ecrire réponse ici",
       start:"Start",
       correct:"Droit",
-      wrong:"Mal"
+      wrong:"Mal",
+      of:"de",
+      restart:"Redémarrer",
+      you:"Tu",
+      french:"Français",
+      swedish:"Suédois"
     }
 });
 

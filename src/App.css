@@ -86,6 +86,50 @@
   font-style: italic;
 }
 
+.result_table {
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.result_table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #e9afa2; 
+}
+
+.result_table thead td {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.show_result {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  float: right;
+  text-align: right;
+}
+
+.show_result .show_result_btn {
+  border: 0;
+  background: transparent;
+  width: 35px;
+  font-size: 14px;
+}
+
+.result_correct {
+  color: green;
+}
+
+.result_wrong {
+  color: red;
+  text-decoration: line-through;
+}
+
+.total_result_string {
+  font-size: 26px;
+  margin-bottom: 50px;
+}
+
 .hidden {
   display: none;
 }
