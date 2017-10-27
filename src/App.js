@@ -2,27 +2,40 @@ import React, { Component } from 'react';
 import lang from './js/components/Lang';
 import strings from './js/components/Strings';
 import SelectLang from './js/components/SelectLang';
-import Counter from './js/components/Counter';
-import Card from './js/components/Card';
+import Intro from './js/components/Intro';
+import Cards from './js/components/Cards';
+import Result from './js/components/Result';
 import './css/SelectLang.css';
 import './App.css';
 import './css/Card.css';
+import './css/AppleCheckBox.css';
 
 class App extends Component {
 
   constructor() {
     super();
+
     const browserLang = navigator.language.substring(0, 2);
+    lang.setLanguage(browserLang);
 
     const loadedStrings = this.loadDefaultStrings();
 
     this.state = {
-      lang: browserLang,
       animationTime: 300,
       cardsRunning: false,
       showResult: false,
+      cheat: false,
+      random: false,
       loadedStrings: loadedStrings
     };
+  }
+
+  componentDidMount() {
+    this.storeState();
+  }
+
+  storeState() {
+    
   }
 
   shuffleStrings(a) {
@@ -37,32 +50,32 @@ class App extends Component {
   }
 
   loadDefaultStrings() {
-    let loadedStrings = strings;
 
-    let shuffledStrings = this.shuffleStrings(loadedStrings);
+    let loadedStrings = [];
+    
+    loadedStrings = strings;
 
-    shuffledStrings.forEach(function(element,i) {
+    loadedStrings.forEach(function(element,i) {
       let doneStatus = false;
       let activeStatus = false;
       let inLineStatus = false;
       const flippedStatus = false;
       const correctStatus = false;
       const wrongStatus = false;
+      
       if(i === 0) {
-        activeStatus = true;
-        inLineStatus = true;
-      } else if(i === 1) {
         inLineStatus = true;
       }
-      shuffledStrings[i].userInput = '';
-      shuffledStrings[i].done = doneStatus;
-      shuffledStrings[i].active = activeStatus;
-      shuffledStrings[i].inLine = inLineStatus;
-      shuffledStrings[i].flipped = flippedStatus;
-      shuffledStrings[i].correct = correctStatus;
-      shuffledStrings[i].wrong = wrongStatus;
+
+      loadedStrings[i].userInput = '';
+      loadedStrings[i].done = doneStatus;
+      loadedStrings[i].active = activeStatus;
+      loadedStrings[i].inLine = inLineStatus;
+      loadedStrings[i].flipped = flippedStatus;
+      loadedStrings[i].correct = correctStatus;
+      loadedStrings[i].wrong = wrongStatus;
     }, this);
-    return shuffledStrings;
+    return loadedStrings;
   }
 
   updateLang(newLang) {
@@ -110,6 +123,9 @@ class App extends Component {
       fixedInputText = fixedInputText.replace(/Ç/g, 'C');
       fixedAnswer = fixedAnswer.replace(/Ç/g, 'C');
 
+      fixedInputText = fixedInputText.replace(/’/g, "'");
+      fixedAnswer = fixedAnswer.replace(/’/g, "'");
+
       if(fixedInputText === fixedAnswer) {
         loadedStrings[keyindex].correct = true;
       } else {
@@ -144,10 +160,12 @@ class App extends Component {
     
     const nextInLine = document.querySelector('[data-keyindex="'+(keyindex + 1)+'"] .card_string_input');
   
+    const animationTime = this.state.animationTime;
+
     if(nextInLine) {
       setTimeout(() => {
         nextInLine.focus();
-      }, 300);      
+      }, animationTime);      
     } else if ('activeElement' in document) {
       document.activeElement.blur();
     }
@@ -190,66 +208,6 @@ class App extends Component {
     });
   }
 
-  renderCards() {
-    let loadedStrings = this.state.loadedStrings;
-    let cards = [];
-    const currLang = lang.getLanguage();
-    loadedStrings.forEach((element,i) => {
-      const userInput = loadedStrings[i].userInput
-      let string = '';
-      let answer = '';
-      if(currLang === 'fr') {
-        string = loadedStrings[i].fr
-        answer = loadedStrings[i].sv
-      } else {
-        string = loadedStrings[i].sv
-        answer = loadedStrings[i].fr
-      }
-      cards.push(
-        <Card
-          key={i}
-          string={string}
-          answer={answer}
-          userInput={userInput}
-          currLang={currLang}
-          done={loadedStrings[i].done}
-          active={loadedStrings[i].active}
-          in_line={loadedStrings[i].inLine}
-          flipped={loadedStrings[i].flipped}
-          correct={loadedStrings[i].correct}
-          wrong={loadedStrings[i].wrong}
-          keyindex={i}
-          handleCardSubmit={this.handleCardSubmit.bind(this)}
-          loadUpNextCard={this.loadUpNextCard.bind(this)}
-        />
-      );
-    }, this);
-    return cards;
-  }
-
-  renderResult() {
-    let loadedStrings = this.state.loadedStrings;
-
-    const result = loadedStrings.map((element,i) => {
-      let addClass = '';
-      if(element.correct) {
-        addClass = 'result_correct';
-      } else {
-        addClass = 'result_wrong';
-      }  
-      return(
-          <tr className={addClass} key={i+1}>
-            <td>{i+1}</td>
-            <td>{element.userInput}</td>
-            <td>{element.fr}</td>
-            <td>{element.sv}</td>
-          </tr>
-      )
-    }, this);
-
-    return result;
-  }
-
   toggleShowResult() {
     this.setState({
       showResult: true,
@@ -257,8 +215,29 @@ class App extends Component {
     });
   }
 
-  runCards() {
+  toggleCheat() {
+    const cheat = this.state.cheat;
     this.setState({
+      cheat: !cheat
+    });
+  }
+
+  toggleRandom() {
+    const random = this.state.random;
+    this.setState({
+      random: !random
+    });
+  }
+
+  runCards() {
+    const random = this.state.random;
+    let loadedStrings = this.state.loadedStrings;
+    if(random){
+      loadedStrings = this.shuffleStrings(loadedStrings);
+    }
+
+    this.setState({
+      loadedStrings: loadedStrings,
       cardsRunning: true
     });
   }
@@ -273,64 +252,35 @@ class App extends Component {
   }
 
   render() {
+
     const cardsRunning = this.state.cardsRunning;
     const showResult = this.state.showResult;
     let main_content = '';
     if(showResult) {
-      let loadedStrings = this.state.loadedStrings;
-      const totalLength = loadedStrings.length;
-      let totalScore = 0;
-      loadedStrings.forEach((element,i) => {
-        if(element.correct === true) {
-          totalScore++;
-        }
-      });
-
-      main_content = 
-      <div>
-        <div className="total_result_string">{totalScore} {lang.of} {totalLength} {lang.correct}</div>
-        <table className="result_table">
-          <thead>
-          <tr>
-            <td>#</td>
-            <td>{lang.you}</td>
-            <td>{lang.french}</td>
-            <td>{lang.swedish}</td>
-          </tr>
-          </thead>
-          <tbody>
-            {this.renderResult()}
-          </tbody>
-      </table>
-      <br /><br />
-      <button className="standard_button" onClick={this.restart.bind(this)}>{lang.restart}</button>
-      </div>
+      main_content = <Result {...this.state}
+        restart={this.restart.bind(this)}
+      />;
     } else if(cardsRunning){
-      main_content = this.renderCards();
+      main_content = <Cards 
+        {...this.state}
+        toggleShowResult={this.toggleShowResult.bind(this)}
+        handleCardSubmit={this.handleCardSubmit.bind(this)}
+        loadUpNextCard={this.loadUpNextCard.bind(this)}
+        toggleCheat={this.toggleCheat.bind(this)}
+      />;
     } else {
-      main_content = <div className="intro">
-        {lang.intro}<br />
-        {lang.pushToStart}<br /><br /><br />
-        <button className="standard_button" onClick={this.runCards.bind(this)}>{lang.start}</button>
-      </div>
+      main_content = <Intro {...this.state}
+        runCards={this.runCards.bind(this)}
+        toggleRandom={this.toggleRandom.bind(this)}
+      />
     }
     return (
       <div className="site add_padding">
         <header className="site_header">
-
-          <div className={
-            'show_result select_lang'+
-            (cardsRunning ? '' : ' hidden')
-            }
-          >
-            <button className="show_result_btn" onClick={this.toggleShowResult.bind(this)}>✕</button>
-          </div>
-
-          <Counter cardsRunning={cardsRunning} loadedString={this.state.loadedStrings} />
           <SelectLang updateLang={this.updateLang.bind(this)} cardsRunning={cardsRunning} />
           <h1 className="site_title">Voila!</h1>
         </header>
-        <div className="site_main add_padding">
+        <div className="site_main">
           {main_content}
         </div>
       </div>

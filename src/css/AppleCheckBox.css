@@ -1,0 +1,49 @@
+.apple_checkbox {
+	display: inline-block;
+	position: relative;
+}
+
+.apple_checkbox label {
+	display: inline-block;
+	width: 45px;
+	height: 30px;
+	border-radius: 40px;
+	background-color: #ddd;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.apple_checkbox label:after {
+	display: block;
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-color: #fff;
+	border-radius: 100%;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.50);
+	transition: transform 0.2s ease-in-out;
+}
+
+.apple_checkbox input[type=checkbox]:checked + label {
+	background-color: #6ADE57;
+}
+
+.apple_checkbox input[type=checkbox]:checked + label:after {
+	transform: translateX(15px);
+}
+
+.apple_checkbox input {
+	display: none;
+}
+
+.apple_checkbox_text {
+	cursor: pointer;
+    float: right;
+    margin: 5px 7px;
+}

@@ -10,7 +10,6 @@
 }
 
 .site_main {
-  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -28,11 +27,12 @@
 .site_title {
   font-size: 1.5em;
   font-weight: normal;
+  margin-top: 30px;
 }
 
 .intro {
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   font-size: 18px;
 }
 
@@ -81,6 +81,13 @@
   background-color: #d59b8e;
 }
 
+.standard_button_mini {
+  width: auto;
+  height: auto;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
 .standard_input::placeholder {
   color: #ddd;
   font-style: italic;
@@ -103,17 +110,8 @@
 
 .show_result {
   position: absolute;
-  top: 7px;
-  right: 7px;
-  float: right;
-  text-align: right;
-}
-
-.show_result .show_result_btn {
-  border: 0;
-  background: transparent;
-  width: 35px;
-  font-size: 14px;
+  top: 12px;
+  right: 15px;
 }
 
 .result_correct {
@@ -125,9 +123,25 @@
   text-decoration: line-through;
 }
 
+.result_notdone {
+  color: #d59b8e;
+}
+
 .total_result_string {
   font-size: 26px;
   margin-bottom: 50px;
+}
+
+.toggle_cheat {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.add_padding_to_tabel {
+  margin-bottom: 40px;
 }
 
 .hidden {

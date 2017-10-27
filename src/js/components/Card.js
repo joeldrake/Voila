@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Counter from './Counter';
+import Backside from './Backside';
 import lang from './Lang';
 
 class Card extends Component {
@@ -12,52 +14,50 @@ class Card extends Component {
     */
 
     render() {
-      const keyindex = this.props.keyindex;
-      const userInput = this.props.userInput;
-      const string = this.props.string;
-      const answer = this.props.answer;
-      const done = this.props.done;
-      const active = this.props.active;
-      const in_line = this.props.in_line;
-      const flipped = this.props.flipped;
-      const correct = this.props.correct;
-      const wrong = this.props.wrong;
+      const loadedStrings = this.props.loadedStrings;
+      const i = this.props.keyindex;
+      const cheat = this.props.cheat;
+      const done = loadedStrings[i].done;
+      const active = loadedStrings[i].active;
+      const in_line = loadedStrings[i].inLine;
+      const flipped = loadedStrings[i].flipped;
+
+      const currLang = lang.getLanguage();
+      
+      let string = '';
+      let answer = '';
+      if(currLang === 'fr') {
+        string = loadedStrings[i].fr
+        answer = loadedStrings[i].sv
+      } else {
+        string = loadedStrings[i].sv
+        answer = loadedStrings[i].fr
+      }
+
+      let placeholder = '';
+      if(!cheat){
+        placeholder = lang.typeanswerhere;
+      } else {
+        placeholder = answer;
+      }
+
       return (
-          <div className={
-            'card add_padding'+
+          <div className={'card add_padding'+
             (active ? ' card_active' : '') +
             (in_line ? ' card_in_line' : '') +
             (flipped ? ' card_flipped' : '') +
             (done ? ' card_done' : '')
             }>
-            <div className={
-                'card_answer card_correct'+
-                (correct ? '' : ' hidden')
-            } onClick={this.props.loadUpNextCard} data-keyindex={keyindex}>
-                <div className="card_string">
-                    <div className="card_answer_string card_answer_string_correct">"{userInput}"</div>
-                    <div className="card_answer_string_emoji"><span role="img" aria-label="correct">😘👌</span></div>
-                    {string}<br />
-                    =<br />
-                    {answer}
-                </div>
-            </div>
-            <div className={
-                'card_answer card_wrong'+
-                (wrong ? '' : ' hidden')
-            } onClick={this.props.loadUpNextCard} data-keyindex={keyindex}>
-                <div className="card_string">
-                    <div className="card_answer_string card_answer_string_wrong">{userInput}</div>
-                    <div className="card_answer_string_emoji"><span role="img" aria-label="wrong">😵</span></div>
-                    {string}<br />
-                    =<br />
-                    {answer}
-                </div>
-            </div>
-              <form onSubmit={this.props.handleCardSubmit} data-keyindex={keyindex}>
+            <Counter {...this.props} />
+              <Backside {...this.props}
+                currLang={currLang}
+                string={string}
+                answer={answer}
+              />
+              <form onSubmit={this.props.handleCardSubmit} data-keyindex={i}>
               <div className="card_string">{string}</div>
                 <div className="standard_wrapper standard_wrapper_input">
-                    <input type="text" className="standard_input card_string_input" placeholder={lang.typeanswerhere} autoComplete="off" />
+                    <input type="text" className="standard_input card_string_input" placeholder={placeholder} autoComplete="off" />
                 </div>
                 <div className="standard_wrapper standard_wrapper_button">
                     <button className="standard_button">{lang.send}</button>

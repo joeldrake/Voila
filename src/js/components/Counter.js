@@ -4,25 +4,19 @@ import './../../css/Counter.css';
 class Counter extends Component {
 
     render() {
-
-      const loadedString = this.props.loadedString;
-      const totalLength = loadedString.length;
+      const loadedStrings = this.props.loadedStrings;
+      const totalLength = loadedStrings.length;
 
       let index = 1;
-      for(var i = 0, len = loadedString.length; i < len; i++) {
-        if (loadedString[i].active === true) {
+      for(var i = 0, len = loadedStrings.length; i < len; i++) {
+        if (loadedStrings[i].active === true) {
             index = i+1;
             break;
         }
       }
-
-      const cardsRunning = this.props.cardsRunning;
+      
       return (
-          <div className={
-            'counter'+
-            (!cardsRunning ? ' hidden' : '')
-            }
-          >
+          <div className="counter">
             {index}/{totalLength}
           </div>
       );

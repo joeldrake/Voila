@@ -43,10 +43,10 @@ class SelectLang extends Component {
               <div className="choose_lang">
                 <button className={
                     currLang === 'sv' ? 'choose_lang_btn choose_lang_btn_active' : 'choose_lang_btn'
-                } data-lang="sv" onClick={this.langBtnClick.bind(this)}>Svenska</button>
+                } data-lang="sv" onClick={this.langBtnClick.bind(this)}>{lang.swedish}</button>
                 <button className={
                     currLang === 'fr' ? 'choose_lang_btn choose_lang_btn_active' : 'choose_lang_btn'
-                } data-lang="fr" onClick={this.langBtnClick.bind(this)}>Franska</button>
+                } data-lang="fr" onClick={this.langBtnClick.bind(this)}>{lang.french}</button>
               </div>
           </div>
       );

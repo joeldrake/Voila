@@ -1,9 +1,8 @@
 .select_lang {
     position: absolute;
     top: 15px;
-    right: 20px;
-    float: right;
-    text-align: right
+    right: 15px;
+    text-align: right;
 }
 
 .select_lang.select_lang_open {
@@ -24,6 +23,7 @@
     text-transform: uppercase;
     min-height: 35px;
     cursor: pointer;
+    margin: 0 auto;
 }
 
 .select_lang button:hover,.select_lang button:focus {
