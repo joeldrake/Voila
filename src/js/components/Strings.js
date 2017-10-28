@@ -24,30 +24,6 @@ const strings = [
     fr:"Elles sont"
   },
   {  
-    sv:"Jag har",
-    fr:"J’ai"
-  },
-  {  
-    sv:"Du har",
-    fr:"Tu as"
-  },
-  {  
-    sv:"Hon har",
-    fr:"Elle a"
-  },
-  {  
-    sv:"Vi har",
-    fr:"Nous avons"
-  },
-  {  
-    sv:"Ni har",
-    fr:"Vous avez"
-  },
-  {  
-    sv:"De har",
-    fr:"Elles ont"
-  },
-  {  
     sv:"Jag kommer vara",
     fr:"Je serai"
   },
@@ -72,30 +48,6 @@ const strings = [
     fr:"Elles seront"
   },
   {  
-    sv:"Jag kommer att ha",
-    fr:"J’aurai"
-  },
-  {  
-    sv:"Du kommer att ha",
-    fr:"Tu auras"
-  },
-  {  
-    sv:"Hon kommer att ha",
-    fr:"Elle aura"
-  },
-  {  
-    sv:"Vi kommer att ha",
-    fr:"Nous aurons"
-  },
-  {  
-    sv:"Ni kommer att ha",
-    fr:"Vous aurez"
-  },
-  {  
-    sv:"De kommer att ha",
-    fr:"Elles auront"
-  },
-  {  
     sv:"Jag var",
     fr:"J’étais"
   },
@@ -118,6 +70,54 @@ const strings = [
   {  
     sv:"De var",
     fr:"Elles étaient"
+  },
+  {  
+    sv:"Jag har",
+    fr:"J’ai"
+  },
+  {  
+    sv:"Du har",
+    fr:"Tu as"
+  },
+  {  
+    sv:"Hon har",
+    fr:"Elle a"
+  },
+  {  
+    sv:"Vi har",
+    fr:"Nous avons"
+  },
+  {  
+    sv:"Ni har",
+    fr:"Vous avez"
+  },
+  {  
+    sv:"De har",
+    fr:"Elles ont"
+  },
+  {  
+    sv:"Jag kommer ha",
+    fr:"J’aurai"
+  },
+  {  
+    sv:"Du kommer ha",
+    fr:"Tu auras"
+  },
+  {  
+    sv:"Hon kommer ha",
+    fr:"Elle aura"
+  },
+  {  
+    sv:"Vi kommer ha",
+    fr:"Nous aurons"
+  },
+  {  
+    sv:"Ni kommer ha",
+    fr:"Vous aurez"
+  },
+  {  
+    sv:"De kommer ha",
+    fr:"Elles auront"
   },
   {  
     sv:"Jag hade",
