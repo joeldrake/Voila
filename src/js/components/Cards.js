@@ -33,7 +33,7 @@ class Cards extends Component {
                     <div className="apple_checkbox">
                         <input type="checkbox" checked={this.props.cheat} id="cheat_checkbox" onChange={this.props.toggleCheat} />
                         <label htmlFor="cheat_checkbox"></label>
-                        <span className="apple_checkbox_text">{lang.help}</span>
+                        <span className="apple_checkbox_text" state-name="cheat" onClick={this.props.checkboxTextClick}>{lang.help}</span>
                     </div>
                 </div>
                 <div className="show_result">

@@ -17,11 +17,12 @@ class Intro extends Component {
                 <div className="apple_checkbox">
                     <input type="checkbox" checked={this.props.random} id="cheat_checkbox" onChange={this.props.toggleRandom} />
                     <label htmlFor="cheat_checkbox"></label>
-                    <span className="apple_checkbox_text">{lang.random}</span>
+                    <span className="apple_checkbox_text" state-name="random" onClick={this.props.checkboxTextClick}>{lang.random}</span>
                 </div>
                 <p>
                     {lang.chooseifrandom}
                 </p>
+                <hr />
                 <p>
                     {lang.belowistheloadedwords}
                 </p>

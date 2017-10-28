@@ -20,6 +20,8 @@ class App extends Component {
 
     const loadedStrings = this.loadDefaultStrings();
 
+    //todo: save state in localstorage when cardsRunning, so user can return to ongoing test. Clear localstorage when test stops
+
     this.state = {
       animationTime: 300,
       cardsRunning: false,
@@ -229,6 +231,23 @@ class App extends Component {
     });
   }
 
+  checkboxTextClick(e) {
+    const target = e.currentTarget;
+
+    var stateName = target.getAttribute('state-name');
+    if(stateName && stateName != '') {
+      const currentState = this.state[stateName];
+      this.setState({
+        [stateName]: !currentState
+      });
+    } else {
+      const parent = target.parentNode
+      const checkbox = parent.querySelector('input');
+      checkbox.checked = !checkbox.checked;
+    }
+  }
+
+
   runCards() {
     const random = this.state.random;
     let loadedStrings = this.state.loadedStrings;
@@ -267,11 +286,13 @@ class App extends Component {
         handleCardSubmit={this.handleCardSubmit.bind(this)}
         loadUpNextCard={this.loadUpNextCard.bind(this)}
         toggleCheat={this.toggleCheat.bind(this)}
+        checkboxTextClick={this.checkboxTextClick.bind(this)}
       />;
     } else {
       main_content = <Intro {...this.state}
         runCards={this.runCards.bind(this)}
         toggleRandom={this.toggleRandom.bind(this)}
+        checkboxTextClick={this.checkboxTextClick.bind(this)}
       />
     }
     return (
