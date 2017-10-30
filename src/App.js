@@ -18,26 +18,33 @@ class App extends Component {
     const browserLang = navigator.language.substring(0, 2);
     lang.setLanguage(browserLang);
 
-    const loadedStrings = this.loadDefaultStrings();
+    let firstState = {};
+    if(localStorage.savedState && localStorage.savedState !== ''){
+      firstState = JSON.parse(localStorage.savedState);
+    } else {
+      const loadedStrings = this.loadDefaultStrings();
+      firstState = {
+        animationTime: 300,
+        cardsRunning: false,
+        showResult: false,
+        cheat: false,
+        random: false,
+        loadedStrings: loadedStrings
+      }
+    }
 
-    //todo: save state in localstorage when cardsRunning, so user can return to ongoing test. Clear localstorage when test stops
-
-    this.state = {
-      animationTime: 300,
-      cardsRunning: false,
-      showResult: false,
-      cheat: false,
-      random: false,
-      loadedStrings: loadedStrings
-    };
+    this.state = firstState;
   }
 
-  componentDidMount() {
-    this.storeState();
+  saveState() {
+    const currentState = JSON.stringify(this.state);
+    localStorage.savedState = currentState;
+    console.log('State saved');
   }
 
-  storeState() {
-    
+  clearSavedState() {
+    localStorage.savedState = '';
+    console.log('Stored state cleared');
   }
 
   shuffleStrings(a) {
@@ -53,11 +60,16 @@ class App extends Component {
 
   loadDefaultStrings() {
 
-    let loadedStrings = [];
+    //let loadedStrings = [];
     
-    loadedStrings = strings;
+    //make sure that there is a new array
+    const loadedStrings = [...strings];
 
     loadedStrings.forEach(function(element,i) {
+
+      //make sure that there is a new object inside the array
+      loadedStrings[i] = Object.assign({}, strings[i]);
+
       let doneStatus = false;
       let activeStatus = false;
       let inLineStatus = false;
@@ -145,11 +157,12 @@ class App extends Component {
       this.loadUpNextCard(keyindex);
     }, 1000);
     */
-
+    setTimeout(() => {
+      this.saveState();
+    }, (animationTime * 2));
   }
 
   loadUpNextCard(e) {
-
     const eIsNumber = !isNaN(e);
     
     let keyindex;
@@ -207,6 +220,8 @@ class App extends Component {
 
     this.setState({
       loadedStrings: loadedStrings
+    },()=>{
+      this.saveState();
     });
   }
 
@@ -214,13 +229,18 @@ class App extends Component {
     this.setState({
       showResult: true,
       cardsRunning: false
+    },()=>{
+      this.saveState();
     });
+    
   }
 
   toggleCheat() {
     const cheat = this.state.cheat;
     this.setState({
       cheat: !cheat
+    },()=>{
+      this.saveState();
     });
   }
 
@@ -235,7 +255,7 @@ class App extends Component {
     const target = e.currentTarget;
 
     var stateName = target.getAttribute('state-name');
-    if(stateName && stateName != '') {
+    if(stateName && stateName !== '') {
       const currentState = this.state[stateName];
       this.setState({
         [stateName]: !currentState
@@ -267,7 +287,10 @@ class App extends Component {
       cardsRunning: false,
       showResult: false,
       loadedStrings: loadedStrings
+    },()=>{
+      this.clearSavedState();
     });
+
   }
 
   render() {

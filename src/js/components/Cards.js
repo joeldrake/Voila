@@ -5,11 +5,13 @@ import Card from './Card';
 class Cards extends Component {
 
     componentDidMount() {
-        window.requestAnimationFrame(() => {
+        if(!localStorage.savedState || localStorage.savedState === ''){
             window.requestAnimationFrame(() => {
-                this.props.loadUpNextCard(-1);
+                window.requestAnimationFrame(() => {
+                    this.props.loadUpNextCard(-1);
+                });
             });
-        });
+        }
     }
 
     render() {
